@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -52,6 +52,7 @@ public class ResourceCentreTest {
 	public void addChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+
 		assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
 		
 		//Given an empty list, after adding 1 item, the size of the list is 1
@@ -64,6 +65,7 @@ public class ResourceCentreTest {
 		//Add another item. test The size of the list is 2?
 		ResourceCentre.addChromebook(chromebookList, cb2);
 		assertEquals("Test that Chromebook arraylist size is 2?", 2, chromebookList.size());
+
 	}
 	
 	@Test
@@ -72,9 +74,9 @@ public class ResourceCentreTest {
 		assertNotNull("Test if there is valid Camcorder arraylist to add to", camcorderList);
 		
 		//test if the list of camcorders retrieved from the SourceCentre is empty
-				String allCamcorder= ResourceCentre.retrieveAllCamcorder(camcorderList);
-				String testOutput = "";
-				assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
+		String allCamcorder= ResourceCentre.retrieveAllCamcorder(camcorderList);
+		String testOutput = "";
+		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
 				
 		//Given an empty list, after adding 2 items, test if the size of the list is 2
 		ResourceCentre.addCamcorder(camcorderList, cc1);
@@ -94,6 +96,7 @@ public class ResourceCentreTest {
 	public void retrieveAllChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+
 		assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
 		
 		//test if the list of chromebook retrieved from the SourceCentre is empty
@@ -113,6 +116,7 @@ public class ResourceCentreTest {
 		testOutput += String.format("%-10s %-30s %-10s %-10s %-20d\n","CC0012", "Sony DSC-RX100M7", "Yes", "", 20);
 		
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
+
 	}
 
 	@Test
@@ -127,6 +131,7 @@ public class ResourceCentreTest {
 		//test if Camcorder is not available for loan or asset tag does not exist
 		Boolean ans1 = ResourceCentre.doLoanCamcorder(camcorderList, cc1.getAssetTag(), "29/10/2000");
 		assertFalse("returns false if camcorder is not available for loan as it has been loaned out or asset tag does not exist",ans1);
+
 	}
 	
 	@Test
@@ -134,19 +139,20 @@ public class ResourceCentreTest {
 		//fail("Not yet implemented");
 		// write your code here
 		//test if Chromebook is available for loan and it is a valid asset tag
+
 		Boolean ans = ResourceCentre.doLoanChromebook(chromebookList, cb1.getAssetTag(), "29/10/2000");
 		assertTrue("returns true if chromebook is available for loan and it is a valid asset tag",ans);
 		
 		//test if Chromebook is not available for loan or asset tag does not exist
 		Boolean ans1 = ResourceCentre.doLoanChromebook(chromebookList, cb1.getAssetTag(), "29/10/2000");
 		assertFalse("returns false if chromebook is not available for loan as it has been loaned out or asset tag does not exist",ans1);
+
 	}
 	
 	@Test
 	public void doReturnCamcorderTest() {
 		//fail("Not yet implemented");
 		// write your code here
-		
 		//Test if Camcorder can be returned and it is a valid asset tag
 		Boolean ans = ResourceCentre.doReturnCamcorder(camcorderList, cc1.getAssetTag());
 		assertTrue("returns true if Camcorder successfully returned and it is a valid asset tag",ans);
@@ -168,6 +174,7 @@ public class ResourceCentreTest {
 		//Test if Chromebook cannot be returned as it was not being loan out or asset tag does not exist
 		Boolean ans1 = ResourceCentre.doReturnChromebook(chromebookList, cb1.getAssetTag());
 		assertFalse("returns false if Chromebook is not being loan or asset tag does not exist",ans1);
+
 	}
 	
 	@After
