@@ -57,14 +57,14 @@ public class ResourceCentreTest {
 		
 		//Given an empty list, after adding 1 item, the size of the list is 1
 		ResourceCentre.addChromebook(chromebookList, cb1);		
-		assertEquals("Test if that Chromebook arraylist size is 1?", 1, chromebookList.size());
-		
-		//The item just added is as same as the first item of the list
-		assertSame("Test that Chromebook is added same as 1st item of the list?", cc1, chromebookList.get(0));
+		assertEquals("Test if that Chromebook arraylist size is 1", 1, chromebookList.size());
+		assertSame("Test that Chromebook is added", cb1, chromebookList.get(0));
 		
 		//Add another item. test The size of the list is 2?
 		ResourceCentre.addChromebook(chromebookList, cb2);
-		assertEquals("Test that Chromebook arraylist size is 2?", 2, chromebookList.size());
+		assertEquals("Test that Chromebook arraylist size is 2", 2, chromebookList.size());
+		//The item just added is as same as the first item of the list
+		assertSame("Test that Chromebook is added same as 1st item of the list?", cb2, chromebookList.get(1));
 
 	}
 	
@@ -124,13 +124,29 @@ public class ResourceCentreTest {
 		//fail("Not yet implemented");
 		// write your code here
 		
-		//test if Camcorder is available for loan and it is a valid asset tag
-		Boolean ans = ResourceCentre.doLoanCamcorder(camcorderList, cc1.getAssetTag(), "29/10/2000");
-		assertTrue("returns true if camcorder is available for loan and it is a valid asset tag",ans);
+		assertNotNull("test if there is valid Camcorder arraylist to loan from", camcorderList);
 		
-		//test if Camcorder is not available for loan or asset tag does not exist
-		Boolean ans1 = ResourceCentre.doLoanCamcorder(camcorderList, cc1.getAssetTag(), "29/10/2000");
-		assertFalse("returns false if camcorder is not available for loan as it has been loaned out or asset tag does not exist",ans1);
+		ResourceCentre.addCamcorder(camcorderList, cc1);
+		//normal
+		Boolean ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC001", "8-8-2020");
+		//System.out.print("Normal);
+		//System.out.print(ok);
+		assertTrue("Test if an available item is ok to loan?", ok);
+		//error condition
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC001", "8-8-2020");
+		//system.out.println("Error");
+		//system.out.println(ok)
+		assertFalse("Test if a same time is NOT ok to loan again", ok);
+		//error condition
+		ResourceCentre.addCamcorder(camcorderList, cc2);
+		cc2.setIsAvailable(false);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0012", "8-8-2020");
+		//System.out.println("Error");
+		//System.out.println(ok);
+		assertFalse("Test that un-available item is not ok to loan?", ok);
+		//error condition
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0013", "8-8-2020");
+		assertFalse("Test that non-existing item is NOT ok to loan?", ok);
 
 	}
 	
